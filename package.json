@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist && webpack"
+    "build": "npm run lint:fix && rimraf build && webpack",
+    "lint:fix": "eslint ./src --fix"
   },
   "keywords": [
     "react-switch-theme",
@@ -17,9 +18,8 @@
   ],
   "author": "bikram sutar",
   "license": "ISC",
-  "dependencies": {
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+  "peerDependencies": {
+    "react": "^16.10.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
