@@ -5,7 +5,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
   },
   optimization: {
     minimize: true,
@@ -20,9 +20,9 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
-    ]
+    ],
   },
   externals: {
-    'react': 'commonjs react'
-  }
+    react: 'commonjs react',
+  },
 };
