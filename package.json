@@ -16,8 +16,18 @@
     "react",
     "react-hooks"
   ],
-  "author": "bikram sutar",
-  "license": "ISC",
+  "author": {
+    "name": "Bikram Sutar",
+    "email": "6bikramsutar@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theBstar/react-switch-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/theBstar/react-switch-theme/issues"
+  },
   "peerDependencies": {
     "react": "^16.10.2"
   },
