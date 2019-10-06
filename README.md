@@ -1,3 +1,6 @@
+![npm](https://img.shields.io/npm/dw/react-switch-theme)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-switch-theme)
+![NPM](https://img.shields.io/npm/l/react-switch-theme)
 # react-switch-theme
 Switch between your themes, (i.e. dark/light or so) with just one click. Uses react hooks.
 [react-switch-theme on npm](https://www.npmjs.com/package/react-switch-theme "Go to NPM page")
