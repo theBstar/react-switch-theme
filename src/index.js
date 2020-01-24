@@ -1,18 +1,6 @@
 import { useState, useEffect } from 'react';
+import { getInitialActiveTheme, executeCallBackIfLocalStorageAndOfflineKeyAvailable } from './helper';
 
-/* eslint-disable no-console */
-
-function addOfflineThemeWithCB(offlineStorageKey, callback) {
-  if (!offlineStorageKey) {
-    let warnMessage = '[react-switch-theme]: offlineStorageKey should be ';
-    warnMessage += 'provided to support offline theme storage';
-    console.debug(warnMessage);
-    return;
-  }
-  if (localStorage) {
-    callback(offlineStorageKey);
-  }
-}
 
 function useReactSwitchTheme({
   colors,
@@ -24,27 +12,18 @@ function useReactSwitchTheme({
 
   if (colorsKeys.indexOf(activeMode) === -1) {
     const errorMessage = '[react-switch-theme]: activeMode should be one of the key of colors';
-    console.error(errorMessage);
     throw Error(errorMessage);
   }
 
-  let actualActiveMode = activeMode;
-  if (offlineStorageKey) {
-    if (localStorage) {
-      const previousMode = localStorage.getItem(offlineStorageKey);
-      if (previousMode) {
-        actualActiveMode = previousMode;
-      }
-    }
-  }
-  const [currentMode, setCurrentMode] = useState(actualActiveMode);
+  const initialActiveMode = getInitialActiveTheme(activeMode, offlineStorageKey);
+  const [currentMode, setCurrentMode] = useState(initialActiveMode);
 
   function setDiffMode() {
     const currentModeIndex = colorsKeys.indexOf(currentMode);
     const nextModeIndex = (currentModeIndex === 0 ? 1 : 0);
     const nextColorMode = colorsKeys[nextModeIndex];
 
-    addOfflineThemeWithCB(offlineStorageKey, (key) => {
+    executeCallBackIfLocalStorageAndOfflineKeyAvailable(offlineStorageKey, (key) => {
       localStorage.setItem(key, nextColorMode);
     });
     setCurrentMode(nextColorMode);
