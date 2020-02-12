@@ -1,6 +1,6 @@
 {
   "name": "react-switch-theme",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Switch between your themes easily, uses react hooks. Just provide the colors object for themes and switch it. switch between light or dark theme, or so.",
   "main": "build/index.js",
   "scripts": {
