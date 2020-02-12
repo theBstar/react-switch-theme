@@ -1,10 +1,10 @@
-export function executeCallBackIfLocalStorageAndOfflineKeyAvailable(offlineStorageKey, callback) {
+export function saveThemeInLocalStorage(offlineStorageKey, themeMode) {
   if (localStorage && offlineStorageKey) {
-    callback(offlineStorageKey);
+    localStorage.setItem(offlineStorageKey, themeMode);
   }
 }
 
-function getPreviouslySavedModeFromLocalStorage(defaultTheme, offlineStorageKey) {
+function getSavedThemeFromLocalStorage(defaultTheme, offlineStorageKey) {
   let currentActiveTheme = defaultTheme;
   if (localStorage) {
     const previousMode = localStorage.getItem(offlineStorageKey);
@@ -18,7 +18,7 @@ function getPreviouslySavedModeFromLocalStorage(defaultTheme, offlineStorageKey)
 export function getInitialActiveTheme(defaultTheme, offlineStorageKey) {
   let currentActiveTheme = defaultTheme;
   if (offlineStorageKey) {
-    currentActiveTheme = getPreviouslySavedModeFromLocalStorage(
+    currentActiveTheme = getSavedThemeFromLocalStorage(
       currentActiveTheme,
       offlineStorageKey,
     );
