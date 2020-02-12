@@ -5,23 +5,68 @@
 Switch between your themes, (i.e. dark/light or so) with just one click. Uses react hooks.
 [react-switch-theme on npm](https://www.npmjs.com/package/react-switch-theme "Go to NPM page")
 
-## Live demo: [codesandbox](https://codesandbox.io/embed/elastic-noether-c048l "Go to code sand box example")
+## Live demo: [codesandbox](https://codesandbox.io/embed/vigorous-wave-4kvk6?fontsize=14&hidenavigation=1&theme=dark "Go to code sand box example")
 
-## Usage:
+# Install:
+  ```javascript
+    npm i react-switch-theme
+  ``` 
 
-  1. Install:
+## Updated usage:
+  This does not break anything, old usage is still valid.
 
-      ```javascript
-      npm i react-switch-theme
-      ``` 
+  1. Import ThemeProvider and Theme. Theme is the Context which will be used with useContext to get theme and setTheme.
+      ```Javascript
+      import { ThemeProvider, Theme } from "react-switch-theme";
+      ```
+  2. Wrap your app with ThemeProvider. This takes just one children, It accepts three props.
+  ```Javascript
+    const colors = {
+      light: {
+        background: "#fff",
+        color: "#000"
+      },
+      dark: {
+        background: "#000",
+        color: "#fff"
+      }
+    };
+    const activeMode = "light";
+    const offlineStorageKey = "react-random-key";
 
-  2. Import ( default import ):
+    // wrap your app
+      <ThemeProvider
+        colors={colors}
+        activeMode={activeMode}
+        offlineStorageKey={offlineStorageKey}
+      >
+        <App />
+      </ThemeProvider>
+  ```
+3. Now in app you can access theme by using:
+
+  ```Javascript
+    const [theme, toogleTheme] = useContext(Theme);
+  ```
+    theme is current theme: string, toogleTheme is a function which changes your current theme.
+
+4. Access your css var from css-in-js or css:
+  ```css
+    // You did the hardwork now just use your vars.
+    background: var(--background);
+    color: var(--color);
+  ```
+
+### Old Usage:
+   #### Demo: [CodeSandbox](https://codesandbox.io/embed/elastic-noether-c048l)
+
+  1. Import ( default import ):
 
       ```javascript
       import useReactSwitchTheme from 'react-switch-theme'; 
       ```
 
-  3. Pass one option to the hook
+  2. Pass one option to the hook
 
       ```javascript
       const options = {
@@ -57,7 +102,7 @@ Switch between your themes, (i.e. dark/light or so) with just one click. Uses re
       }
       ```
     
-  4. Use it in your app:
+  3. Use it in your app:
   
       ```javascript
         const [currentMode, setDiffMode] = useReactSwitchTheme(options)
@@ -68,7 +113,7 @@ Switch between your themes, (i.e. dark/light or so) with just one click. Uses re
         // setDiffMode is function which will toggle between two themes on call.
       ```
       
-  5. Your css:
+  4. Your css:
     
       ```css
         // You did the hardwork now just use your vars.
